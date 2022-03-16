@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 import HospitalIcon from "../assets/hospital.png";
 import LogoutIcon from "../assets/logout.png";
 import { initialState } from "stream-chat-react/dist/components/Channel/channelState";
+import { useTheme } from "../ContextProvider";
 
 const cookies = new Cookies();
 
@@ -37,13 +38,9 @@ const customChannelMessagingFilter = (channels) => {
     return channels.filter((channel) => channel.type === "messaging");
 };
 
-const ChannelListContent = ({
-    isCreating,
-    setIsCreating,
-    setCreateType,
-    setIsEditing,
-    setToggleContainer,
-}) => {
+const ChannelListContent = ({ setToggleContainer }) => {
+    // const { isCreating, setIsCreating, setCreateType, setIsEditing } =
+    //     useTheme();
     const { client } = useChatContext();
 
     const logout = () => {
@@ -78,18 +75,12 @@ const ChannelListContent = ({
                         <TeamChannelList
                             {...listProps}
                             type="team"
-                            isCreating={isCreating}
-                            setIsCreating={setIsCreating}
-                            setCreateType={setCreateType}
-                            setIsEditing={setIsEditing}
                             setToggleContainer={setToggleContainer}
                         />
                     )}
                     Preview={(previewProps) => (
                         <TeamChannelPreview
                             {...previewProps}
-                            setIsCreating={setIsCreating}
-                            setIsEditing={setIsEditing}
                             setToggleContainer={setToggleContainer}
                             type="team"
                         />
@@ -107,18 +98,12 @@ const ChannelListContent = ({
                         <TeamChannelList
                             {...listProps}
                             type="messaging"
-                            isCreating={isCreating}
-                            setIsCreating={setIsCreating}
-                            setCreateType={setCreateType}
-                            setIsEditing={setIsEditing}
                             setToggleContainer={setToggleContainer}
                         />
                     )}
                     Preview={(previewProps) => (
                         <TeamChannelPreview
                             {...previewProps}
-                            setIsCreating={setIsCreating}
-                            setIsEditing={setIsEditing}
                             setToggleContainer={setToggleContainer}
                             type="messaging"
                         />
@@ -129,21 +114,14 @@ const ChannelListContent = ({
     );
 };
 
-const ChannelListContainer = ({
-    setCreateType,
-    setIsCreating,
-    setIsEditing,
-}) => {
+const ChannelListContainer = () => {
+    // const { setCreateType, setIsCreating, setIsEditing } = useTheme();
     const [toggleContainer, setToggleContainer] = useState(false);
 
     return (
         <>
             <div className="channel-list__container">
-                <ChannelListContent
-                    setIsCreating={setIsCreating}
-                    setCreateType={setCreateType}
-                    setIsEditing={setIsEditing}
-                />
+                <ChannelListContent />
             </div>
 
             <div
@@ -161,12 +139,7 @@ const ChannelListContainer = ({
                         )
                     }
                 ></div>
-                <ChannelListContent
-                    setIsCreating={setIsCreating}
-                    setCreateType={setCreateType}
-                    setIsEditing={setIsEditing}
-                    setToggleContainer={setToggleContainer}
-                />
+                <ChannelListContent setToggleContainer={setToggleContainer} />
             </div>
         </>
     );

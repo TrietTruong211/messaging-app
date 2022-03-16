@@ -3,6 +3,7 @@ import { useChatContext } from "stream-chat-react";
 import { UserList } from "./";
 import { CloseCreateChannel } from "../assets";
 import { useState } from "react";
+import { useTheme } from "../ContextProvider";
 
 const ChannelNameInput = ({ channelName = "", setChannelName }) => {
     const handleChange = (event) => {
@@ -23,7 +24,8 @@ const ChannelNameInput = ({ channelName = "", setChannelName }) => {
     );
 };
 
-const CreateChannel = ({ createType, setIsCreating }) => {
+const CreateChannel = () => {
+    const { createType, setIsCreating } = useTheme();
     const { client, setActiveChannel } = useChatContext();
     const [selectedUsers, setSelectedUsers] = useState([client.userID || ""]);
     const [channelName, setChannelName] = useState("");

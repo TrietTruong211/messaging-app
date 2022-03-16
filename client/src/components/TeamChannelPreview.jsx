@@ -1,14 +1,14 @@
 import React from "react";
 import { Avatar, useChatContext } from "stream-chat-react";
+import { useTheme } from "../ContextProvider";
 
 const TeamChannelPreview = ({
     channel,
     type,
     setToggleContainer,
-    setIsCreating,
-    setIsEditing,
     setActiveChannel,
 }) => {
+    const { setIsCreating, setIsEditing } = useTheme();
     const { channel: activeChannel, client } = useChatContext(); //renaming channel to activeChannel, avoid same name as prop
 
     const ChannelPreview = () => (

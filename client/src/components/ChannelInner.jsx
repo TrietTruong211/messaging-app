@@ -11,10 +11,12 @@ import {
 } from "stream-chat-react";
 
 import { ChannelInfo } from "../assets";
+import { useTheme } from "../ContextProvider";
 
 export const GiphyContext = React.createContext({});
 
-const ChannelInner = ({ setIsEditing }) => {
+const ChannelInner = () => {
+    const { setIsEditing } = useTheme();
     const [giphyState, setGiphyState] = useState(false);
     const { sendMessage } = useChannelActionContext();
 
@@ -56,7 +58,8 @@ const ChannelInner = ({ setIsEditing }) => {
     );
 };
 
-const TeamChannelHeader = ({ setIsEditing }) => {
+const TeamChannelHeader = () => {
+    const { setIsEditing } = useTheme();
     const { channel, watcher_count } = useChannelStateContext();
     const { client } = useChatContext();
 

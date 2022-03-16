@@ -53,7 +53,6 @@ const ChannelSearch = ({ setToggleContainer }) => {
         setActiveChannel(channel);
     };
 
-    console.log(teamChannels);
     return (
         <div className="channel-search__container">
             <div className="channel-search__input__wrapper">
